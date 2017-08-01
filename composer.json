@@ -1,0 +1,13 @@
+{
+    "name": "burdapraha/oc_version_number",
+    "description": "Helper function which fixing visitors browser cache issue after your changes at CSS or javascript",
+    "type": "vqmod-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Landsman",
+            "email": "landsman@insuit.cz"
+        }
+    ],
+    "require": {}
+}

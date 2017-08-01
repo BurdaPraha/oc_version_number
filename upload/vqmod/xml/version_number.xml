@@ -1,0 +1,35 @@
+<modification>
+    <id>Version number for styles - cache issue</id>
+    <version>1.0.0</version>
+    <vqmver>2.1.5</vqmver>
+    <author>Michal Landsman</author>
+
+    <!-- add new function to the system helper -->
+    <file name="system/helper/general.php">
+        <operation info="version number">
+            <search position="after"><![CDATA[<?php]]></search>
+            <add>
+                <![CDATA[
+                    if(!function_exists('versionNumber')){
+                       function versionNumber($path) {
+
+                            $absolutePath   = DIR_APPLICATION . $path;
+                            $clearPath      = str_replace("catalog/catalog/", "catalog/", $absolutePath);
+                            $version = file_exists($clearPath) ? filectime($clearPath) : 'ERROR_FILE_NOT_EXIST!';
+                            return "{$path}?v={$version}";
+                        }
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <!-- replace styles calling with path contains version number, you can use this function for your another files in your theme ... -->
+    <file path="catalog/view/theme/*/template/common/" name="header.tpl">
+        <operation>
+            <search position="replace"><![CDATA[<link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />]]></search>
+            <add><![CDATA[<link href="<?php echo versionNumber($style['href']); ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />]]></add>
+        </operation>
+    </file>
+
+</modification>
