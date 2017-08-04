@@ -26,7 +26,7 @@
 
     <!-- replace styles calling with path contains version number, you can use this function for your another files in your theme ... -->
     <file path="catalog/view/theme/*/template/common/" name="header.tpl">
-        <operation>
+        <operation error="skip">
             <search position="replace"><![CDATA[<link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />]]></search>
             <add><![CDATA[<link href="<?php echo versionNumber($style['href']); ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />]]></add>
         </operation>
